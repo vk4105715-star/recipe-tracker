@@ -1,0 +1,236 @@
+:root {
+  --paper: #FBF7EF;
+  --ink: #2B2118;
+  --ink-soft: #6B5D4F;
+  --card: #FFFFFF;
+  --card-line: #E7DFD2;
+  --sage: #5C6B4A;
+  --sage-dark: #47542F;
+  --clay: #B5502E;
+  --clay-dark: #963F22;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  font-family: 'Fraunces', serif;
+  margin: 0;
+}
+
+.site-header {
+  padding: 3rem 1.5rem 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--card-line);
+}
+
+.site-header h1 {
+  font-size: 2.6rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.tagline {
+  margin-top: 0.4rem;
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.add-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.controls {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+#searchInput {
+  flex: 1;
+  min-width: 200px;
+}
+
+input, select, textarea {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--card-line);
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--ink);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--sage);
+  outline-offset: 1px;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1rem;
+}
+
+.recipe-card {
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-left: 4px solid var(--clay);
+  border-radius: 4px;
+  padding: 1.1rem 1.2rem;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.recipe-card:hover,
+.recipe-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(43, 33, 24, 0.08);
+}
+
+.recipe-card h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.recipe-card .meta {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+.category-pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: #EEF0E4;
+  color: var(--sage-dark);
+  width: fit-content;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--ink-soft);
+  padding: 3rem 1rem;
+  font-size: 1rem;
+}
+
+.btn-primary, .btn-secondary, .btn-danger {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.65rem 1.2rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--sage);
+  color: white;
+}
+.btn-primary:hover { background: var(--sage-dark); }
+
+.btn-secondary {
+  background: var(--card);
+  border-color: var(--card-line);
+  color: var(--ink);
+}
+.btn-secondary:hover { background: var(--paper); }
+
+.btn-danger {
+  background: var(--card);
+  border-color: var(--clay);
+  color: var(--clay-dark);
+}
+.btn-danger:hover { background: #FBEEE8; }
+
+dialog {
+  border: none;
+  border-radius: 10px;
+  padding: 0;
+  width: min(560px, 92vw);
+  background: var(--card);
+  color: var(--ink);
+}
+
+dialog::backdrop {
+  background: rgba(43, 33, 24, 0.4);
+}
+
+#recipeForm, .view-content {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+#recipeForm label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 0.75rem;
+}
+
+.hint {
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.view-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.view-content h2 {
+  font-size: 1.6rem;
+}
+
+.view-content h3 {
+  font-size: 1rem;
+  margin-top: 1.2rem;
+  color: var(--sage-dark);
+}
+
+.view-content ul, .view-content ol {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.view-content li {
+  margin-bottom: 0.3rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recipe-card { transition: none; }
+}

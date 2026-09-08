@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recipe Box</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <h1>Recipe Box</h1>
+  <p class="tagline">Keep the ones worth making again.</p>
+</header>
+
+<main>
+  <section class="add-section">
+    <button id="newRecipeBtn" class="btn-primary">+ Add a recipe</button>
+  </section>
+
+  <section class="controls">
+    <input type="search" id="searchInput" placeholder="Search by name or ingredient…" aria-label="Search recipes">
+    <select id="categoryFilter" aria-label="Filter by category">
+      <option value="">All categories</option>
+      <option value="Breakfast">Breakfast</option>
+      <option value="Lunch">Lunch</option>
+      <option value="Dinner">Dinner</option>
+      <option value="Dessert">Dessert</option>
+      <option value="Snack">Snack</option>
+      <option value="Other">Other</option>
+    </select>
+  </section>
+
+  <section id="recipeGrid" class="recipe-grid"></section>
+
+  <p id="emptyState" class="empty-state" hidden>
+    No recipes yet. Add your first one above — it'll be saved right here in this browser.
+  </p>
+</main>
+
+<!-- Add/Edit recipe dialog -->
+<dialog id="recipeDialog">
+  <form id="recipeForm">
+    <h2 id="dialogTitle">Add a recipe</h2>
+
+    <label for="recipeName">Name</label>
+    <input type="text" id="recipeName" required placeholder="e.g. Weeknight Tomato Pasta">
+
+    <label for="recipeCategory">Category</label>
+    <select id="recipeCategory">
+      <option value="Breakfast">Breakfast</option>
+      <option value="Lunch">Lunch</option>
+      <option value="Dinner" selected>Dinner</option>
+      <option value="Dessert">Dessert</option>
+      <option value="Snack">Snack</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <label for="recipeIngredients">Ingredients <span class="hint">(one per line)</span></label>
+    <textarea id="recipeIngredients" rows="5" required placeholder="2 cups flour
+1 tsp salt
+3 eggs"></textarea>
+
+    <label for="recipeSteps">Instructions <span class="hint">(one step per line)</span></label>
+    <textarea id="recipeSteps" rows="6" required placeholder="Preheat oven to 350°F
+Mix dry ingredients
+Bake for 25 minutes"></textarea>
+
+    <div class="dialog-actions">
+      <button type="button" id="cancelBtn" class="btn-secondary">Cancel</button>
+      <button type="submit" class="btn-primary">Save recipe</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- View recipe dialog -->
+<dialog id="viewDialog">
+  <div class="view-content">
+    <div class="view-header">
+      <span id="viewCategory" class="category-pill"></span>
+      <h2 id="viewName"></h2>
+    </div>
+
+    <h3>Ingredients</h3>
+    <ul id="viewIngredients"></ul>
+
+    <h3>Instructions</h3>
+    <ol id="viewSteps"></ol>
+
+    <div class="dialog-actions">
+      <button type="button" id="deleteBtn" class="btn-danger">Delete</button>
+      <button type="button" id="editBtn" class="btn-secondary">Edit</button>
+      <button type="button" id="closeViewBtn" class="btn-primary">Close</button>
+    </div>
+  </div>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>
